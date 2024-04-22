@@ -1,0 +1,132 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #c7eef3;
+}
+
+h1,
+h2 {
+    color: #333333;
+}
+hr {
+    height: 1px;
+    background-color: #031c30;
+    border: none;
+  }
+
+form {
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333333;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="pin"],
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #9191bd;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button[type="submit"]:hover {
+    background-color: #7a7a9a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #cccccc;
+    font-family: 'Montserrat', sans-serif;
+}
+
+table th {
+    background-color: #9191bd;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.warning {
+    color: red;
+    font-size: 12px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    max-height: 150px;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    margin-right: 10px;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item:hover {
+    transform: scale(1.1);
+}
+
+.carousel-item:last-child {
+    margin-right: 0;
+}
+
+.carousel-item img {
+    height: 50px;
+    width: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    object-fit: cover;
+}
+
+/* Estilos para el botón de Crear Videos y Perfiles */
+.btnVideo,
+.btnProfile {
+    background-color: #9191bd;
+    color: #fff;
+    border-radius: 20px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+
+.btnVideo:hover {
+    background-color: #7a7a9a;
+}
+
+.btnProfile:hover {
+    background-color: #7a7a9a;
+}

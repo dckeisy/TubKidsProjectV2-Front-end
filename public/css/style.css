@@ -1,0 +1,100 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(../images/FondoTubkidsP1Blur.png);
+    background-size: cover;
+}
+.header {
+    position: relative;
+    height: 100px;
+    top: -15rem;
+    left: -7rem;
+    background-color: transparent;
+}
+.container-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.1);
+    height: 560px;
+    width: 600px;
+    transition: all 1s ease;
+    background-color: #c7eef3;
+    margin-right: 240px;
+    
+}
+.form-information{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: #c7eef3;
+    border-radius: 20px;
+}
+
+.form-information-childs {
+    padding: 0 60px;
+}
+
+.form-information-childs h2{
+    color: #333;
+    font-size: 2rem;
+}
+.form{
+    margin: 60px 0 0 0;
+}
+.form label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    padding: 0 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form label input {
+    width: 100%;
+    padding: 12px 12px 12px 35px;
+    background-color: #fff;
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    color: #333;
+    font-size: 16px;
+}
+
+.form label i {
+    color: #a7a7a7;
+    margin-left: 15px;
+    font-size: 20px;
+}
+.button-login{
+    background-color: #9191bd;
+    color: #fff;
+    border-radius: 20px;
+    border:none;
+    padding: 10px 15px;
+    cursor:pointer;
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+}
+.button-login:hover{
+    background-color: #7a7a9a;
+}
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 5px;
+  }

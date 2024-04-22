@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeKidsV1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../public/css/style.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <nav>
+            <img class="logo" src="../public/images/logo.png" alt="" id="logo" />
+        </nav>
+    </div>
+    <div class="container-form">
+        <div class="form-information">
+            <div class="form-information-childs">
+                <h2>Iniciar Sesión</h2>
+                <form class="form">
+                    <label>
+                        <i class='bx bx-envelope'></i>
+                        <input type="text" placeholder="Correo electronico" id="email">
+                    </label>
+                    <label>
+                        <i class='bx bx-lock'></i>
+                        <input type="password" placeholder="Contraseña" id="password">
+                    </label>
+                    <button class="button-login" type="button" onclick="VerifyUser()">Iniciar Sesión</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../public/js/login.js"></script>
+</body>
+
+</html>

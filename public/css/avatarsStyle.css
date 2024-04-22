@@ -1,0 +1,88 @@
+/* Estilos generales */
+body {
+    background-color: #c7eef3;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+    height: 40px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#adminBtn {
+    background-color: #9191bd;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#adminBtn:hover {
+    background-color: #7a7a9a;
+}
+
+/* Estilos específicos para los perfiles */
+.image-wrapper {
+    text-align: center; 
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.image-item {
+    width: 250px; 
+    height: 300px; 
+    object-fit: cover; 
+    margin-left: 20px;
+}
+
+.fullname {
+    display: block; 
+    margin-top: 5px; 
+    font-size: larger;
+    font-weight: bold;
+    color: #003e4f;
+}
+/* Scrollbar*/
+.slider-wrapper .image-list::-webkit-scrollbar {
+    width: 5px; 
+    background: #5e9188;
+}
+
+.slider-wrapper .image-list::-webkit-scrollbar-thumb {
+    background: #3e5954; 
+    border-radius: 5px;
+}
+
+.slider-wrapper .image-list::-webkit-scrollbar-thumb:hover {
+    background: #253342;
+}
+
+.slider-wrapper .image-list {
+    display: flex; 
+    flex-wrap: nowrap; 
+    overflow-x: auto;
+    padding-bottom: 40px;
+}
