@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeKidsV1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../public/css/avatarsStyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const token = localStorage.getItem('token');
+        /*Obtener el id del usuario jwt decode*/
+        const data = JSON.parse(atob(token.split('.')[1]));
+        GetProfiles(data.userId);
+    });
+</script>
+
+<body>
+    <header class="header">
+        <div class="contenedor-logo">
+            <img class="logo" src="../public/images/logo.png" alt="" id="logo" />
+        </div>
+        <nav>
+            <button id="adminBtn" onclick="verifyPin()">Administrar</button>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="slider-wrapper">
+            <ul id="avatarImg" class="image-list">
+
+            </ul>
+        </div>
+        <div class="slider-scrollbar">
+            <div class="scrollbar-track">
+                <div class="scrollbar-thumb"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../public/js/profiles.js"></script>
+</body>
+
+</html>
