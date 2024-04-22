@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Videos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #c7eef3;
+    }
+</style>
+<body>
+    <div class="container my-5">
+        <h1 class="mb-4">Crear Playlist</h1>
+        <form id="playlistForm">
+            <div class="form-group">
+                <input type="hidden" id="userId">
+                <label for="name">Nombre de la Playlist</label>
+                <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="form-group">
+                <label>Perfiles Asociados</label>
+                <div id="associatedProfiles">
+
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="createPlaylist()">Crear Playlist</button>
+        </form>
+    </div>
+    <div class="container my-5">
+        <h1 class="mb-4">Gestión de Playlist</h1>
+
+        <h2>Playlists</h2>
+        <div class="card-deck" id="playlistList">
+        </div>
+        <div id="playlistRender">
+
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="../public/js/playlists.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = localStorage.getItem('token');
+            /Obtener el id del usuario jwt decode/
+            const data = JSON.parse(atob(token.split('.')[1]));
+            GetProfiles(data.userId);
+            GetPlaylistByUser(data.userId);
+            document.getElementById('userId').value = data.userId;
+        });
+    </script>
+</body>
+
+</html>
