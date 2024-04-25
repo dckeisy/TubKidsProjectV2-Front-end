@@ -4,6 +4,7 @@ loginButton.addEventListener('click', () => {
 });
 
 saveUser = () => {
+    userStatus = "pendiente";
     let data = {
         "username": document.getElementById('username').value,
         "lastname": document.getElementById('lastname').value,
@@ -13,7 +14,8 @@ saveUser = () => {
         "email": document.getElementById('email').value,
         "pin": document.getElementById('pin').value,
         "country": document.getElementById('country').value,
-        "phone": document.getElementById('phone').value
+        "phone": document.getElementById('countryCode').value + document.getElementById('phone').value,
+        "status": userStatus
     }
     let settings = {
         "async": true,
