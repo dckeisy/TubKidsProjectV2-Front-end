@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const token = localStorage.getItem('token');
+  /*Obtener el id del usuario jwt decode*/
+  const data = JSON.parse(atob(token.split('.')[1]));
+  GetProfiles(data.userId);
+});
 verifyPin = () => {
   const pin = prompt('Ingrese su PIN:');
 

@@ -12,15 +12,6 @@
     <link rel="stylesheet" href="../public/css/avatarsStyle.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const token = localStorage.getItem('token');
-        /*Obtener el id del usuario jwt decode*/
-        const data = JSON.parse(atob(token.split('.')[1]));
-        GetProfiles(data.userId);
-    });
-</script>
-
 <body>
     <header class="header">
         <div class="contenedor-logo">
