@@ -1,3 +1,11 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const token = localStorage.getItem('token');
+    /Obtener el id del usuario jwt decode/
+    const data = JSON.parse(atob(token.split('.')[1]));
+    GetProfiles(data.userId);
+    GetPlaylistByUser(data.userId);
+    document.getElementById('userId').value = data.userId;
+});
 GetProfiles = async (id) => {
     let headersList = {
         "Content-Type": "application/json"
@@ -12,18 +20,15 @@ GetProfiles = async (id) => {
     `,
         variables: { "userId": id }
     }
-
     let bodyContent = JSON.stringify(gqlBody);
     let response = await fetch("http://localhost:3002/graphql", {
         method: "POST",
         body: bodyContent,
         headers: headersList
     });
-
     let data = await response.json();
     //console.log(data);
     renderProfiles(data.data.profiles);
-
 }
 function renderProfiles(profiles) {
     const associatedProfilesDiv = document.getElementById('associatedProfiles');
@@ -53,7 +58,6 @@ createPlaylist = () => {
         "associatedProfiles": associatedProfiles,
         "userId": document.getElementById('userId').value
     }
-
     const settings = {
         "async": true,
         "crossDomain": true,
@@ -65,7 +69,6 @@ createPlaylist = () => {
         "processData": false,
         "data": JSON.stringify(data)
     };
-
     $.ajax(settings).done(function (response) {
         console.log(response);
     });
@@ -79,7 +82,7 @@ GetPlaylistByUser = async (id) => {
 
     let gqlBody = {
         query: `query {
-           playlistByUser(userId: "661c541f8eec7cd2189bc009") {
+           playlistByUser(userId: "${id}") {
                id
                name
                userId
@@ -98,9 +101,7 @@ GetPlaylistByUser = async (id) => {
            }
        }
        `,
-        variables: { "userId": id }
     }
-
     let bodyContent = JSON.stringify(gqlBody);
 
     let response = await fetch("http://localhost:3002/graphql", {
@@ -108,22 +109,18 @@ GetPlaylistByUser = async (id) => {
         body: bodyContent,
         headers: headersList
     });
-
     let data = await response.json();
-    console.log(data);
     renderPlaylists(data.data.playlistByUser);
 }
 function renderPlaylists(playlists) {
-
     const playlistList = document.getElementById('playlistList');
     playlistList.innerHTML = '';
-
     playlists.forEach(playlist => {
         const card = document.createElement('div');
         card.classList.add('card', 'mb-3');
 
         const cardBody = document.createElement('div');
-        cardBody.classList.add('card-body', 'd-flex', 'justify-content-between', 'align-items-center'); // Añadir clases flex
+        cardBody.classList.add('card-body', 'd-flex', 'justify-content-between', 'align-items-center');
 
         const cardTitle = document.createElement('h5');
         cardTitle.classList.add('card-title');
@@ -170,7 +167,6 @@ function renderPlaylists(playlists) {
         });
     });
 }
-
 function renderEditPlaylist(playlist) {
 
     let html = '';
@@ -206,8 +202,8 @@ function renderEditPlaylist(playlist) {
     playlist.associatedProfiles.forEach(profile => {
         html += `
             <div>
-                <input type="checkbox" name="editPlaylistProfiles[]" value="${profile.userId}" id="edit-profile-${profile.userId}" checked>
-                <label for="edit-profile-${profile.userId}">${profile.fullname}</label>
+                <input type="checkbox" name="editPlaylistProfiles[]" value="${profile.id}" id="edit-profile-${profile.id}" checked>
+                <label for="edit-profile-${profile.id}">${profile.fullname}</label>
             </div>
         `;
     });
@@ -222,13 +218,13 @@ function renderEditPlaylist(playlist) {
 
 function updatePlaylist(playlistId) {
     const name = document.getElementById('namePlaylist').value;
-    const associatedProfilesCheckboxes = document.querySelectorAll('input[name="editPlaylistProfiles[]"]:checked');
-    const associatedProfiles = Array.from(associatedProfilesCheckboxes).map(checkbox => checkbox.value);
-    console.log(associatedProfilesCheckboxes);
+    const associatedEditProfilesCheckboxes = document.querySelectorAll('input[name="editPlaylistProfiles[]"]:checked');
+    const associatedEditProfiles = Array.from(associatedEditProfilesCheckboxes).map(checkbox => checkbox.value);
+    console.log(associatedEditProfilesCheckboxes);
 
     const data = {
         "name": name,
-        "associatedProfiles": associatedProfiles
+        "associatedProfiles": associatedEditProfiles
     }
 
     const settings = {
@@ -244,14 +240,11 @@ function updatePlaylist(playlistId) {
     };
 
     $.ajax(settings).done(function (response) {
-        console.log('aqui');
         console.log(response);
     });
 
-    /*  window.location.reload(); */
-    alert('Se modifico');
+    window.location.reload();
 }
-
 function deletePlaylist(playlistId) {
     console.log(playlistId);
     const settings = {
@@ -263,6 +256,5 @@ function deletePlaylist(playlistId) {
     $.ajax(settings).done(function (response) {
         console.log(response);
     });
-    alert("Playlist deleted");
-
+    window.location.reload();
 }

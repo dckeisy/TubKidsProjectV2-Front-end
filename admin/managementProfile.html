@@ -11,17 +11,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <script src="../public/js/crudProfile.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const token = localStorage.getItem('token');
-        /Obtener el id del usuario jwt decode/
-        const data = JSON.parse(atob(token.split('.')[1]));
-        GetProfiles(data.userId);
-        document.getElementById('userId').value = data.userId;
-    });
-</script>
-
-
 <body>
     <!-- Formulario para crear un perfil -->
     <hr>

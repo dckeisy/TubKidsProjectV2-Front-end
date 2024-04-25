@@ -49,16 +49,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="../public/js/playlists.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const token = localStorage.getItem('token');
-            /Obtener el id del usuario jwt decode/
-            const data = JSON.parse(atob(token.split('.')[1]));
-            GetProfiles(data.userId);
-            GetPlaylistByUser(data.userId);
-            document.getElementById('userId').value = data.userId;
-        });
-    </script>
 </body>
 
 </html>

@@ -1,3 +1,10 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const token = localStorage.getItem('token');
+    /Obtener el id del usuario jwt decode/
+    const data = JSON.parse(atob(token.split('.')[1]));
+    GetProfiles(data.userId);
+    document.getElementById('userId').value = data.userId;
+});
 createProfiles = () => {
     data = {
         "fullname": document.getElementById('fullname').value,
@@ -52,8 +59,6 @@ GetProfiles = async (id) => {
     renderProfiles(data.data.profiles);
 
 }
-
-
 renderProfiles = (profile) => {
     html = '';
     const editButtonStyle = `
@@ -97,12 +102,8 @@ renderProfiles = (profile) => {
 
 });
 document.getElementById('tbodyPerfiles').innerHTML = html;
-
 }
-
-
 renderEditProfile = (id, name, pin, avatar, age) => {
-
     let html = '';
     const editButtonStyle = `
         color: white;
@@ -134,11 +135,8 @@ renderEditProfile = (id, name, pin, avatar, age) => {
             <input type="number" value="${age}" id="profileAge" style="${inputStyle}" min="1" step="1">
 
             <button style="${editButtonStyle}" type="button" onclick="updateProfile('${id}')"> Editar </button>
-           
             `
-
     document.getElementById('paginacionPerfiles').innerHTML = html;
-
 }
 updateProfile = (id) => {
     data = {
@@ -147,8 +145,6 @@ updateProfile = (id) => {
         "avatar": document.getElementById('profileUrl').value,
         "age": document.getElementById('profileAge').value
     }
-
-    console.log(data);
     const settings = {
         "async": true,
         "crossDomain": true,
@@ -167,20 +163,15 @@ updateProfile = (id) => {
 
     window.location.reload();
 }
-
 deleteProfile = (id) => {
-
     const settings = {
         "async": true,
         "crossDomain": true,
         "url": `http://localhost:3001/api/profiles?id=${id}`,
         "method": "DELETE"
     };
-
     $.ajax(settings).done(function (response) {
         console.log(response);
     });
-
     window.location.reload();
-
 }

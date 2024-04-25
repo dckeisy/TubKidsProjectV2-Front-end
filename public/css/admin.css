@@ -37,6 +37,14 @@ form select {
     border-radius: 5px;
     font-family: 'Montserrat', sans-serif;
 }
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
 
 button[type="submit"] {
     padding: 10px 20px;

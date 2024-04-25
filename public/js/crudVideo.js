@@ -1,5 +1,11 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const token = localStorage.getItem('token');
+    /Obtener el id del usuario jwt decode/
+    const data = JSON.parse(atob(token.split('.')[1]));
+    document.getElementById('userId').value = data.userId;
+    getPlaylistIdFromQueryParam();
+});
 let playlistId;
-
 function getPlaylistIdFromQueryParam() {
     const urlParams = new URLSearchParams(window.location.search);
     playlistId = urlParams.get('playlistId');
@@ -8,7 +14,7 @@ function getPlaylistIdFromQueryParam() {
 }
 /*---------------------------------------------------------------------------------------------*/
 createVideo = () => {
-
+    
     data = {
         "name": document.getElementById('titleVideo').value,
         "url": document.getElementById('urlVideo').value,
@@ -25,19 +31,18 @@ createVideo = () => {
         "headers": {
             "Content-Type": "application/json"
         },
-        "processData": false,
         "data": JSON.stringify(data)
     };
-
+    
     $.ajax(settings).done(function (response) {
-        console.log(response);
+
+        window.location.href = 'http://127.0.0.1:5500/TubKidsProjectV2-Front-end/admin/managementPlaylist.html'
+
     });
 
-    window.location.reload();
 }
 /*---------------------------------------------------------------------------------------------*/
 GetVideosByPlaylist = async (IdPlaylist) => {
-    //console.log(IdPlaylist);
     let headersList = {
         "Content-Type": "application/json"
     }
@@ -49,6 +54,7 @@ GetVideosByPlaylist = async (IdPlaylist) => {
                    id
                    name
                    url
+                   descripcion
                    userId
                }
            }
@@ -63,9 +69,11 @@ GetVideosByPlaylist = async (IdPlaylist) => {
     });
 
     let data = await response.json();
+    console.log(data);
     renderVideo(data.data.videosByPlaylist);
 
 }
+/*---------------------------------------------------------------------------------------------*/
 renderVideo = (videos) => {
     let html = '';
     const editButtonStyle = `
@@ -101,8 +109,9 @@ renderVideo = (videos) => {
                 html += `<tr>
                             <td>${video.name}</td>
                             <td>${video.url}</td>
+                            <td>${video.descripcion}</td>
                             <td>
-                                <button style="${editButtonStyle}" onclick="renderEdit('${video.name}','${video.url}','${video.id}')" >Editar</button>
+                                <button style="${editButtonStyle}" onclick="renderEdit('${video.name}','${video.url}','${video.descripcion}','${video.id}')" >Editar</button>
                                 <button style="${deleteButtonStyle}" onclick="DeleteVideo('${video.id}')" >Eliminar</button>
                             </td>
                         </tr>`;
@@ -128,7 +137,7 @@ DeleteVideo = (id) => {
 
 }
 /*---------------------------------------------------------------------------------------------*/
-renderEdit = (name, url, id) => {
+renderEdit = (name, url, description,id) => {
     let html = '';
     const editButtonStyle = `
         color: white;
@@ -152,7 +161,8 @@ renderEdit = (name, url, id) => {
     `;
     html += `
             <input type="text" value="${name}" id="name" style="${inputStyle}">
-            <input type="text" value="${url}" id="url" style="${inputStyle}">  
+            <input type="text" value="${url}" id="url" style="${inputStyle}">
+            <input type="text" value="${description}" id="descriptionEdit" style="${description}">  
             <button style="${editButtonStyle}" onclick="updateVideo('${id}');return false" >Editar</button>    
             `
     document.getElementById('paginacionVideos').innerHTML = html;
@@ -163,9 +173,9 @@ renderEdit = (name, url, id) => {
 updateVideo = (id) => {
     data = {
         "name": document.getElementById('name').value,
-        "url": document.getElementById('url').value
+        "url": document.getElementById('url').value,
+        "descripcion": document.getElementById('descriptionEdit').value
     }
-
     const settings = {
         "async": true,
         "crossDomain": true,

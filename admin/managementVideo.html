@@ -11,19 +11,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <script src="../public/js/crudVideo.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const token = localStorage.getItem('token');
-        /Obtener el id del usuario jwt decode/
-        const data = JSON.parse(atob(token.split('.')[1]));
-        document.getElementById('userId').value = data.userId;
-        getPlaylistIdFromQueryParam();
-    });
-</script>
-
 <body>
     <div class="container mt-5">
+        <hr>
         <h1 class="mb-4">Crear Video</h1>
+        <hr>
         <form id="formCreateVideo">
             <div class="form-group">
                 <input type="hidden" id="userId">
@@ -38,9 +30,15 @@
                 <label for="videoDescription">Descripción:</label>
                 <input type="text" class="form-control" id="videoDescription" name="descripcion" required>
             </div>
-            <button class="btnVideo" onclick="createVideo()">Agregar Video</button>
+            <button class="btnVideo" onclick="createVideo(); return false">Agregar Video</button>
         </form>
     </div>
+    <!-- <br>
+    <hr>
+    <div class="form-group">
+        <label for="videoDescription">Busqueda:</label>
+        <input type="text" id="search" name="search" required>
+    </div> -->
     <br>
     <!-- Tabla para mostrar la lista de videos -->
     <hr>
@@ -52,6 +50,7 @@
             <tr>
                 <th>Nombre</th>
                 <th>URL</th>
+                <th>Descripción</th>
                 <th>Acciones</th>
             </tr>
 
